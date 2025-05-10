@@ -1,4 +1,7 @@
 
+import MenuScene from './scenes/MenuScene.js';
+import GameScene from './scenes/GameScene.js';
+
 class Game {
   constructor() {
     this.canvas = document.getElementById('gameCanvas');
@@ -31,3 +34,5 @@ class Game {
     this.gameLoop();
   }
 }
+
+export default Game;
