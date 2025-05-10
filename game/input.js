@@ -1,4 +1,6 @@
 
+import { SCREEN } from './constants.js';
+
 class InputHandler {
   constructor() {
     this.keys = {};
@@ -17,3 +19,5 @@ class InputHandler {
     }
   }
 }
+
+export default InputHandler;

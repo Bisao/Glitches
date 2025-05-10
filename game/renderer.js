@@ -1,4 +1,7 @@
 
+import { SCREEN, TILE_WIDTH, TILE_HEIGHT } from './constants.js';
+import { toIsometric } from './utils.js';
+
 class Renderer {
   constructor(canvas) {
     this.canvas = canvas;
@@ -28,3 +31,5 @@ class Renderer {
     this.ctx.stroke();
   }
 }
+
+export default Renderer;
