@@ -24,17 +24,7 @@ class Game {
   }
 
   startGame() {
-    this.currentScene = {
-      update: () => {},
-      render: () => {
-        this.renderer.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        for (let y = 0; y < MAP_SIZE; y++) {
-          for (let x = 0; x < MAP_SIZE; x++) {
-            this.renderer.drawTile(x, y, this.map[y][x]);
-          }
-        }
-      }
-    };
+    this.currentScene = new GameScene(this);
   }
 
   start() {
