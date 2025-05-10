@@ -1,6 +1,9 @@
 
 import MenuScene from './scenes/MenuScene.js';
 import GameScene from './scenes/GameScene.js';
+import Renderer from './renderer.js';
+import InputHandler from './input.js';
+import { MAP_SIZE } from './constants.js';
 
 class Game {
   constructor() {
