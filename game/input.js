@@ -6,7 +6,9 @@ class InputHandler {
       x: 0,
       y: 0,
       lastX: 0,
-      lastY: 0
+      lastY: 0,
+      deltaX: 0,
+      deltaY: 0
     };
     
     this.zoom = {
@@ -37,10 +39,12 @@ class InputHandler {
 
     document.addEventListener('mousemove', (e) => {
       if (this.rightMouseDown) {
-        this.touch.x = e.clientX - this.touch.lastX;
-        this.touch.y = e.clientY - this.touch.lastY;
+        this.touch.deltaX = e.clientX - this.touch.lastX;
+        this.touch.deltaY = e.clientY - this.touch.lastY;
         this.touch.lastX = e.clientX;
         this.touch.lastY = e.clientY;
+        this.touch.x = e.clientX;
+        this.touch.y = e.clientY;
         this.touch.active = true;
       }
     });
@@ -72,10 +76,12 @@ class InputHandler {
     document.addEventListener('touchmove', (e) => {
       e.preventDefault();
       if (this.touchCount === 1) {
-        this.touch.x = e.touches[0].clientX - this.touch.lastX;
-        this.touch.y = e.touches[0].clientY - this.touch.lastY;
+        this.touch.deltaX = e.touches[0].clientX - this.touch.lastX;
+        this.touch.deltaY = e.touches[0].clientY - this.touch.lastY;
         this.touch.lastX = e.touches[0].clientX;
         this.touch.lastY = e.touches[0].clientY;
+        this.touch.x = e.touches[0].clientX;
+        this.touch.y = e.touches[0].clientY;
       } else if (this.touchCount === 2) {
         const currentDistance = Math.hypot(
           e.touches[0].clientX - e.touches[1].clientX,
