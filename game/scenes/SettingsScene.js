@@ -1,6 +1,7 @@
 
 import Scene from './Scene.js';
 import MenuScene from './MenuScene.js';
+import { SCREEN } from '../constants.js';
 
 class SettingsScene extends Scene {
   constructor(game) {

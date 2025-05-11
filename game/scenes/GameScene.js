@@ -1,5 +1,6 @@
 
 import Scene from './Scene.js';
+import { SCREEN, MAP_SIZE } from '../constants.js';
 
 class GameScene extends Scene {
   constructor(game) {
