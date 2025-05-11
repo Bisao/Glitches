@@ -1,4 +1,3 @@
-
 import { TILE_WIDTH, TILE_HEIGHT } from './constants.js';
 
 export function toIsometric(x, y) {
