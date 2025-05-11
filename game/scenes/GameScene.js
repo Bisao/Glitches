@@ -36,8 +36,9 @@ class GameScene extends Scene {
   }
 
   drawIsometricTile(ctx, x, y, color) {
-    const isoX = (x - y) * this.tileWidth / 2 + this.cameraOffset.x;
-    const isoY = (x + y) * this.tileHeight / 2 + this.cameraOffset.y;
+    const zoom = this.game.input.zoom.level;
+    const isoX = ((x - y) * this.tileWidth / 2 * zoom) + this.cameraOffset.x;
+    const isoY = ((x + y) * this.tileHeight / 2 * zoom) + this.cameraOffset.y;
 
     if (isoX < -this.tileWidth || isoX > SCREEN.WIDTH + this.tileWidth ||
         isoY < -this.tileHeight || isoY > SCREEN.HEIGHT + this.tileHeight) {
