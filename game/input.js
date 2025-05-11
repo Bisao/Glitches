@@ -28,6 +28,10 @@ class InputHandler {
         this.rightMouseDown = true;
         this.touch.lastX = e.clientX;
         this.touch.lastY = e.clientY;
+      } else if (e.button === 0) { // Left mouse button
+        this.touch.active = true;
+        this.touch.x = e.clientX;
+        this.touch.y = e.clientY;
       }
     });
 
@@ -63,6 +67,8 @@ class InputHandler {
       
       if (this.touchCount === 1) {
         this.touch.active = true;
+        this.touch.x = e.touches[0].clientX;
+        this.touch.y = e.touches[0].clientY;
         this.touch.lastX = e.touches[0].clientX;
         this.touch.lastY = e.touches[0].clientY;
       } else if (this.touchCount === 2) {
