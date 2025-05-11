@@ -2,6 +2,7 @@
 import Scene from './Scene.js';
 import { SCREEN } from '../constants.js';
 import SettingsScene from './SettingsScene.js';
+import GameScene from './GameScene.js';
 
 class MenuScene extends Scene {
   constructor(game) {
@@ -25,7 +26,7 @@ class MenuScene extends Scene {
     if (this.game.input.touch.active) {
       const touch = this.game.input.touch;
       if (this.isButtonClicked(this.playButton, touch.x, touch.y)) {
-        this.game.startGame();
+        this.game.currentScene = new GameScene(this.game);
       }
       if (this.isButtonClicked(this.settingsButton, touch.x, touch.y)) {
         this.game.currentScene = new SettingsScene(this.game);
