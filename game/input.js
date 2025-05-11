@@ -53,12 +53,22 @@ class InputHandler {
       }
     });
 
+    this.targetZoom = 1;
+    
     document.addEventListener('wheel', (e) => {
       e.preventDefault();
       const delta = e.deltaY > 0 ? 0.9 : 1.1;
-      this.zoom.level *= delta;
-      this.zoom.level = Math.max(this.zoom.min, Math.min(this.zoom.max, this.zoom.level));
+      this.targetZoom *= delta;
+      this.targetZoom = Math.max(this.zoom.min, Math.min(this.zoom.max, this.targetZoom));
     });
+
+    // Smooth zoom animation
+    this.updateZoom = () => {
+      const diff = this.targetZoom - this.zoom.level;
+      if (Math.abs(diff) > 0.01) {
+        this.zoom.level += diff * 0.1;
+      }
+    };
 
     // Touch controls
     document.addEventListener('touchstart', (e) => {
