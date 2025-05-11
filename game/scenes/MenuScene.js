@@ -53,6 +53,11 @@ class MenuScene extends Scene {
     this.drawButton(ctx, this.settingsButton, 'Settings');
   }
 
+  isButtonClicked(button, x, y) {
+    return x >= button.x && x <= button.x + button.width && 
+           y >= button.y && y <= button.y + button.height;
+  }
+
   drawButton(ctx, button, text) {
     ctx.fillStyle = '#3498db';
     ctx.fillRect(button.x, button.y, button.width, button.height);
@@ -60,11 +65,7 @@ class MenuScene extends Scene {
     ctx.fillStyle = '#fff';
     ctx.font = this.ui.BUTTON_FONT;
     ctx.textAlign = 'center';
-    ctx.fillText(text, button.x + button.width / 2, button.y + button.height / 2 + (SCREEN.MOBILE ? 6 : 8));
-  }
-
-  isButtonClicked(button, x, y) {
-    return x > button.x && x < button.x + button.width && y > button.y && y < button.y + button.height;
+    ctx.fillText(text, button.x + button.width / 2, button.y + button.height / 2 + 8);
   }
 }
 
