@@ -7,19 +7,23 @@ import GameScene from './GameScene.js';
 class MenuScene extends Scene {
   constructor(game) {
     super(game);
+    const ui = SCREEN.MOBILE ? SCREEN.UI.MOBILE : SCREEN.UI.DESKTOP;
+    
     this.playButton = {
-      x: SCREEN.WIDTH / 2 - 100,
-      y: SCREEN.HEIGHT / 2 - 50,
-      width: 200,
-      height: 50
+      x: SCREEN.WIDTH / 2 - ui.BUTTON_WIDTH / 2,
+      y: SCREEN.HEIGHT / 2 - ui.BUTTON_HEIGHT,
+      width: ui.BUTTON_WIDTH,
+      height: ui.BUTTON_HEIGHT
     };
 
     this.settingsButton = {
-      x: SCREEN.WIDTH / 2 - 100,
-      y: SCREEN.HEIGHT / 2 + 20,
-      width: 200,
-      height: 50
+      x: SCREEN.WIDTH / 2 - ui.BUTTON_WIDTH / 2,
+      y: SCREEN.HEIGHT / 2 + ui.BUTTON_HEIGHT / 2,
+      width: ui.BUTTON_WIDTH,
+      height: ui.BUTTON_HEIGHT
     };
+    
+    this.ui = ui;
   }
 
   update() {
@@ -41,7 +45,7 @@ class MenuScene extends Scene {
     ctx.fillRect(0, 0, SCREEN.WIDTH, SCREEN.HEIGHT);
 
     ctx.fillStyle = '#ecf0f1';
-    ctx.font = '48px Arial';
+    ctx.font = this.ui.TITLE_FONT;
     ctx.textAlign = 'center';
     ctx.fillText('Isometric Game', SCREEN.WIDTH / 2, SCREEN.HEIGHT / 3);
 
@@ -54,9 +58,9 @@ class MenuScene extends Scene {
     ctx.fillRect(button.x, button.y, button.width, button.height);
 
     ctx.fillStyle = '#fff';
-    ctx.font = '24px Arial';
+    ctx.font = this.ui.BUTTON_FONT;
     ctx.textAlign = 'center';
-    ctx.fillText(text, button.x + button.width / 2, button.y + button.height / 2 + 8);
+    ctx.fillText(text, button.x + button.width / 2, button.y + button.height / 2 + (SCREEN.MOBILE ? 6 : 8));
   }
 
   isButtonClicked(button, x, y) {
