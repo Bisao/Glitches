@@ -14,9 +14,9 @@ class GameScene extends Scene {
   update() {
     if (this.game.input.touch.active) {
       const touch = this.game.input.touch;
-      // Movimentação da câmera com toque
-      this.cameraOffset.x = touch.x - SCREEN.WIDTH / 2;
-      this.cameraOffset.y = touch.y - SCREEN.HEIGHT / 2;
+      // Movimentação da câmera com toque usando delta
+      this.cameraOffset.x += touch.deltaX;
+      this.cameraOffset.y += touch.deltaY;
     }
   }
 
