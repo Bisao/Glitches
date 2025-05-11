@@ -13,3 +13,9 @@ export function fromIsometric(x, y) {
   const tileX = y / TILE_HEIGHT - tileY;
   return { x: tileX, y: tileY };
 }
+export function toIsometric(x, y) {
+  return {
+    x: (x - y) * 32,
+    y: (x + y) * 16
+  };
+}

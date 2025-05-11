@@ -18,14 +18,24 @@ class InputHandler {
     });
 
     document.addEventListener('touchstart', (e) => {
+      e.preventDefault();
       this.touch.active = true;
       this.touch.x = e.touches[0].clientX;
       this.touch.y = e.touches[0].clientY;
-    });
+    }, { passive: false });
 
-    document.addEventListener('touchend', () => {
+    document.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      if (this.touch.active) {
+        this.touch.x = e.touches[0].clientX;
+        this.touch.y = e.touches[0].clientY;
+      }
+    }, { passive: false });
+
+    document.addEventListener('touchend', (e) => {
+      e.preventDefault();
       this.touch.active = false;
-    });
+    }, { passive: false });
   }
 }
 

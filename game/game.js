@@ -8,11 +8,20 @@ import { MAP_SIZE } from './constants.js';
 class Game {
   constructor() {
     this.canvas = document.getElementById('gameCanvas');
+    this.resizeCanvas();
+    window.addEventListener('resize', () => this.resizeCanvas());
     this.renderer = new Renderer(this.canvas);
     this.input = new InputHandler();
     this.map = Array(MAP_SIZE).fill().map(() => Array(MAP_SIZE).fill('#a3d6d4'));
     this.currentScene = new MenuScene(this);
   }
+
+
+  resizeCanvas() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
 
   update() {
     this.currentScene.update();
