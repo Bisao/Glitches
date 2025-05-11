@@ -28,6 +28,10 @@ class SettingsScene extends Scene {
     };
   }
 
+  isButtonClicked(button, x, y) {
+    return x > button.x && x < button.x + button.width && y > button.y && y < button.y + button.height;
+  }
+
   update() {
     if (this.game.input.touch.active) {
       const touch = this.game.input.touch;
@@ -55,32 +59,32 @@ class SettingsScene extends Scene {
     ctx.fillText('Settings', SCREEN.WIDTH / 2, SCREEN.HEIGHT / 4);
 
     this.drawButton(ctx, this.backButton, 'Back');
-
-    ctx.fillStyle = '#34495e';
-    ctx.fillRect(this.volumeSlider.x, this.volumeSlider.y, this.volumeSlider.width, this.volumeSlider.height);
-    ctx.fillStyle = '#3498db';
-    ctx.fillRect(this.volumeSlider.x, this.volumeSlider.y, (this.volumeLevel / 100) * this.volumeSlider.width, this.volumeSlider.height);
-
-    ctx.fillStyle = '#ecf0f1';
-    ctx.font = '20px Arial';
-    ctx.textAlign = 'left';
-    ctx.fillText(`Volume: ${Math.round(this.volumeLevel)}%`, this.volumeSlider.x, this.volumeSlider.y - 10);
-
-    this.drawButton(ctx, this.controlToggle, `Controls: ${this.controlType}`);
+    this.drawVolumeSlider(ctx);
+    this.drawControlToggle(ctx);
   }
 
   drawButton(ctx, button, text) {
     ctx.fillStyle = '#3498db';
     ctx.fillRect(button.x, button.y, button.width, button.height);
-
     ctx.fillStyle = '#fff';
     ctx.font = '20px Arial';
     ctx.textAlign = 'center';
     ctx.fillText(text, button.x + button.width / 2, button.y + button.height / 2 + 6);
   }
 
-  isButtonClicked(button, x, y) {
-    return x > button.x && x < button.x + button.width && y > button.y && y < button.y + button.height;
+  drawVolumeSlider(ctx) {
+    ctx.fillStyle = '#7f8c8d';
+    ctx.fillRect(this.volumeSlider.x, this.volumeSlider.y, this.volumeSlider.width, this.volumeSlider.height);
+    ctx.fillStyle = '#2ecc71';
+    ctx.fillRect(this.volumeSlider.x, this.volumeSlider.y, this.volumeSlider.width * (this.volumeLevel / 100), this.volumeSlider.height);
+    ctx.fillStyle = '#fff';
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(`Volume: ${Math.round(this.volumeLevel)}%`, this.volumeSlider.x + this.volumeSlider.width / 2, this.volumeSlider.y - 10);
+  }
+
+  drawControlToggle(ctx) {
+    this.drawButton(ctx, this.controlToggle, `Controls: ${this.controlType}`);
   }
 }
 
