@@ -18,6 +18,8 @@ class GameScene extends Scene {
       this.cameraOffset.x += touch.deltaX;
       this.cameraOffset.y += touch.deltaY;
     }
+    // Reset deltas após aplicar o movimento
+    this.game.input.resetDeltas();
   }
 
   render() {

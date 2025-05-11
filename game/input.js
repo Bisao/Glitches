@@ -104,7 +104,15 @@ class InputHandler {
     document.addEventListener('touchend', () => {
       this.touch.active = false;
       this.touchCount = 0;
+      this.touch.deltaX = 0;
+      this.touch.deltaY = 0;
     });
+
+    // Método para resetar os deltas após cada update
+    this.resetDeltas = () => {
+      this.touch.deltaX = 0;
+      this.touch.deltaY = 0;
+    };
 
     // Prevent context menu
     document.addEventListener('contextmenu', (e) => {
