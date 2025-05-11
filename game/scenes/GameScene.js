@@ -50,14 +50,21 @@ class GameScene extends Scene {
 
   drawIsometricTile(ctx, x, y, color) {
     const zoom = this.game.input.zoom.level;
-    const isoX = ((x - y) * this.tileWidth / 2 * zoom) + this.cameraOffset.x;
-    const isoY = ((x + y) * this.tileHeight / 2 * zoom) + this.cameraOffset.y;
+    // Aplica zoom no centro da tela
+    const centerX = SCREEN.WIDTH / 2;
+    const centerY = SCREEN.HEIGHT / 2;
+    
+    const isoX = ((x - y) * this.tileWidth / 2) + this.cameraOffset.x;
+    const isoY = ((x + y) * this.tileHeight / 2) + this.cameraOffset.y;
 
     if (!this.isVisible(x, y)) {
       return;
     }
 
     ctx.save();
+    ctx.translate(centerX, centerY);
+    ctx.scale(zoom, zoom);
+    ctx.translate(-centerX, -centerY);
     ctx.translate(isoX, isoY);
 
     // Desenha o tile isométrico
